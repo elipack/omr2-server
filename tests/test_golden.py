@@ -55,8 +55,8 @@ def _fixture(name: str) -> Path:
     return p
 
 
-def test_healthz() -> None:
-    r = requests.get(f"{SERVER}/healthz", timeout=10)
+def test_health() -> None:
+    r = requests.get(f"{SERVER}/health", timeout=10)
     assert r.status_code == 200
     assert r.json()["status"] == "ok"
 

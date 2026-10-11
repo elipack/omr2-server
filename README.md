@@ -22,7 +22,7 @@ You are free to self-host: everything needed is in the Dockerfile.
 |---|---|
 | `POST /transcribe` | multipart field `image` (JPEG/PNG, ≤25 MB) → `{musicxml, title, staffs, notes, measures, elapsed_s}`. One page per request; expect 30–90 s. |
 | `POST /stitch` | `{"pages": ["<musicxml>", ...]}` → `{musicxml, notes, measures, warnings}` — concatenates multi-page transcriptions into one document. |
-| `GET /healthz` | liveness + versions |
+| `GET /health` | liveness + versions |
 | `GET /source` | AGPL §13 corresponding-source offer |
 
 Errors: `401` bad token · `413` upload too large · `422 no_staves_detected` ·

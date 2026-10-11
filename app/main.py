@@ -18,7 +18,7 @@ Environment:
                         per-instance — a deterrent, not a guarantee).
     MAX_UPLOAD_MB       upload size cap (default: 25; Cloud Run caps at 32).
     HOMR_SHA            upstream SHA baked in by the Dockerfile, reported by
-                        /healthz and /source.
+                        /health and /source.
 """
 
 import hmac
@@ -143,8 +143,11 @@ def _stitch(pages: list[str]) -> tuple[str, list[str]]:
 # ---------------------------------------------------------------------------
 
 
-@app.get("/healthz")
-def healthz() -> dict:
+# Named "/health", not "/healthz" — Cloud Run's GFE edge intercepts the
+# literal path "/healthz" and returns its own 404 before the request ever
+# reaches this container.
+@app.get("/health")
+def health() -> dict:
     return {"status": "ok", "server": SERVER_VERSION, "homr_sha": HOMR_SHA}
 
 

@@ -48,4 +48,4 @@ gcloud run deploy "$SERVICE" \
 
 echo
 echo "Deployed. Verify with:"
-echo "  curl \$(gcloud run services describe $SERVICE --region $REGION --format 'value(status.url)')/healthz"
+echo "  curl \$(gcloud run services describe $SERVICE --region $REGION --format 'value(status.url)')/health"
